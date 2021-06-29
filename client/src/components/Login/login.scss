@@ -1,0 +1,16 @@
+$red: #9A193E;  
+
+.login{
+  padding: 30px;
+  width: 39%;
+  background-color: white;
+  border-radius: 5px;
+
+  button{
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .errors-section {
+    color: $red
+  }
+}
