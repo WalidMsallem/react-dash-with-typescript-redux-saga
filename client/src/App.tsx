@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect ,useState } from 'react'
 import Login from './components/Login'
 import Layout from './components/Layout'
 import LandingPage from './components/LandingPage'
@@ -9,12 +9,20 @@ import {  Switch, Route } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import { selectisAuthenticated } from './features/selectors/user.selectors'
 import history from './utils/history'
+// import MultiSelect from './components/shared/MultiSelect'
+
 import './App.scss'
+
+
+
+
+ 
+
 
 function App() {
   const dispatch = _useDispatch()
   const isAuthenticated = !!useSelector(selectisAuthenticated)
-
+ 
   useEffect(() => {
     if (!isAuthenticated && localStorage.getItem('token')) {
       dispatch({ type: userActionTypes.GET_PROFILE.request })
