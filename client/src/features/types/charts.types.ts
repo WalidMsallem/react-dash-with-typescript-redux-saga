@@ -3,13 +3,15 @@ import * as actions from '../actions/charts.actions'
 
 /* --- STATE --- */
 interface Data {
-  concurrent: {
-    cdn: []
-    p2p: []
-  }|any
-  bandwidth: {audience: []}|any
-  bandwidthMax: { cdn: Number | null; p2p: Number | null },
-  aggregatedStatsByCountries:[]
+  concurrent:
+    | {
+        cdn: []
+        p2p: []
+      }
+    | any
+  bandwidth: { audience: [] } | any
+  bandwidthMax: { cdn: Number | null; p2p: Number | null }
+  aggregatedStatsByCountries: []
 }
 
 interface Local {
@@ -24,7 +26,6 @@ interface Local {
     fetchingBandwidth: string
     fetchingconcurrent: string
     fetchingAggregatedStatsByCountries: string
-
   }
 }
 interface ChartrStateInter {

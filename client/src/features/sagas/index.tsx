@@ -2,10 +2,13 @@
  * Combine  Sagas  watcher
  */
 
-
 import { all } from 'redux-saga/effects'
 
-import { loginUserWatcher, getProfileWatcher,logoutUserWatcher } from './user.saga'
+import {
+  loginUserWatcher,
+  getProfileWatcher,
+  logoutUserWatcher,
+} from './user.saga'
 import {
   changeRangeWatcher,
   fetchBandwidthWatcher,

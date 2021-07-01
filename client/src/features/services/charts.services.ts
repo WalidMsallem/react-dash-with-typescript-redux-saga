@@ -9,12 +9,12 @@ import URL from '../constants/services.constants'
 import { Range } from '../types/charts.types'
 
 export const fetchBandwidth = async (body: Range): Promise<any> => {
-    const result = await axios.post(
-      URL.baseApiUrl() + URL.charts.fetchBandWith,
-      body,
-      requestHeaderWithoutToken(),
-    )
-    return result.data
+  const result = await axios.post(
+    URL.baseApiUrl() + URL.charts.fetchBandWith,
+    body,
+    requestHeaderWithoutToken(),
+  )
+  return result.data
 }
 export const fetchConcurrent = async (body: Range): Promise<any> => {
   const result = await axios.post(
@@ -25,7 +25,9 @@ export const fetchConcurrent = async (body: Range): Promise<any> => {
   return result.data
 }
 
-export const fetchAggregatedStatsByCountries = async (body: Range): Promise<any> => {
+export const fetchAggregatedStatsByCountries = async (
+  body: Range,
+): Promise<any> => {
   const result = await axios.post(
     URL.baseApiUrl() + URL.charts.fetchAggregatedStatsByCountries,
     body,
@@ -33,4 +35,3 @@ export const fetchAggregatedStatsByCountries = async (body: Range): Promise<any>
   )
   return result.data
 }
- 

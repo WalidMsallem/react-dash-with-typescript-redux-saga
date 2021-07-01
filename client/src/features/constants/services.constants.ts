@@ -3,12 +3,12 @@ const URL = {
   user: {
     auth: '/auth',
     me: '/myinfo',
-    logout:'/logout'
+    logout: '/logout',
   },
   charts: {
     fetchBandWith: `/bandwidth`,
     fetchConcurrent: `/audience`,
-    fetchAggregatedStatsByCountries :'/countries'
+    fetchAggregatedStatsByCountries: '/countries',
   },
 }
 
