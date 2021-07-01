@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-export const Arrow = ({ expanded }:any) => (
+export const Arrow = ({ expanded }: any) => (
   <svg
     width="24"
     height="24"
@@ -9,6 +9,6 @@ export const Arrow = ({ expanded }:any) => (
     strokeWidth="2"
     className="dropdown-heading-dropdown-arrow gray"
   >
-    <path d={expanded ? "M18 15 12 9 6 15" : "M6 9L12 15 18 9"} />
+    <path d={expanded ? 'M18 15 12 9 6 15' : 'M6 9L12 15 18 9'} />
   </svg>
-);
+)

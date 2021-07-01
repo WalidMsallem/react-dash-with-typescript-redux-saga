@@ -3,20 +3,20 @@
 /**
  * This component represents an individual item in the multi-select drop-down
  */
-import React, { useRef } from "react";
+import React, { useRef } from 'react'
 
-import { useKey } from "../../../../utils/use-key";
-import { KEY } from "../constants";
-import { Option } from "../interfaces";
-import DefaultItemRenderer from "./default-item";
+import { useKey } from '../../../../utils/use-key'
+import { KEY } from '../constants'
+import { Option } from '../interfaces'
+import DefaultItemRenderer from './default-item'
 
 interface ISelectItemProps {
-  itemRenderer: any;
-  option: Option;
-  checked?: boolean;
-  tabIndex?: number;
-  disabled?: boolean;
-  onSelectionChanged: (checked: boolean) => void;
+  itemRenderer: any
+  option: Option
+  checked?: boolean
+  tabIndex?: number
+  disabled?: boolean
+  onSelectionChanged: (checked: boolean) => void
 }
 
 const SelectItem = ({
@@ -27,28 +27,28 @@ const SelectItem = ({
   disabled,
   onSelectionChanged,
 }: ISelectItemProps) => {
-  const itemRef: any = useRef();
+  const itemRef: any = useRef()
 
-  const onOptionCheck = (e :object|any) => {
-    toggleChecked();
-    e.preventDefault();
-  };
+  const onOptionCheck = (e: object | any) => {
+    toggleChecked()
+    e.preventDefault()
+  }
 
   const toggleChecked = () => {
     if (!disabled) {
-      onSelectionChanged(!checked);
+      onSelectionChanged(!checked)
     }
-  };
+  }
 
-  const handleClick = (e :object|any) => {
-    toggleChecked();
-  };
+  const handleClick = (e: object | any) => {
+    toggleChecked()
+  }
 
-  useKey([KEY.ENTER, KEY.SPACE], onOptionCheck, { target: itemRef });
+  useKey([KEY.ENTER, KEY.SPACE], onOptionCheck, { target: itemRef })
 
   return (
     <label
-      className={`select-item ${checked && "selected"}`}
+      className={`select-item ${checked && 'selected'}`}
       role="option"
       aria-selected={checked}
       tabIndex={tabIndex}
@@ -61,7 +61,7 @@ const SelectItem = ({
         disabled={disabled}
       />
     </label>
-  );
-};
+  )
+}
 
-export default SelectItem;
+export default SelectItem

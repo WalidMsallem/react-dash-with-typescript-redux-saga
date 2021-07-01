@@ -4,6 +4,9 @@ const URL = {
     auth: '/auth',
     me: '/myinfo',
   },
+  charts: {
+    fetchBandWith: `/bandwidth`,
+  },
 }
 
 export default URL

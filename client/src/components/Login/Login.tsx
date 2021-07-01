@@ -15,7 +15,7 @@ const Login = (): JSX.Element => {
   const apiError = useSelector(selectLoginError)
   const loading = !!useSelector(selectLoginLogin)
 
-  const onFinish = (values: any):void => {
+  const onFinish = (values: any): void => {
     dispatch(login(values))
   }
 

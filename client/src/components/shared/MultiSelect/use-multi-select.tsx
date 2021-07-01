@@ -35,7 +35,7 @@ export const MultiSelectProvider = ({
 }: MultiSelectProviderProps) => {
   const renderMessage = (key: string) =>
     props.overrideStrings?.[key] || defaultStrings[key]
-console.log('props', props)
+  console.log('props', props)
   return (
     <MultiSelectContext.Provider
       value={{ renderMessage, ...defaultProps, ...props }}
