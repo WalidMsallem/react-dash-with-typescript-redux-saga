@@ -2,25 +2,29 @@ import { ActionType } from 'typesafe-actions'
 import * as actions from '../actions/charts.actions'
 
 /* --- STATE --- */
-type Bandwidth =
-  | {
-      cdn: []
-      p2p: []
-    }
-  | {}
-
 interface Data {
-  bandwidth: Bandwidth
-  bandwidthMax: { cdn: Number | null; p2p: Number | null }
+  concurrent: {
+    cdn: []
+    p2p: []
+  }|any
+  bandwidth: {audience: []}|any
+  bandwidthMax: { cdn: Number | null; p2p: Number | null },
+  aggregatedStatsByCountries:[]
 }
+
 interface Local {
   fromTimestamp: number
   toTimestamp: number
   loading: {
     fetchingBandwidth: boolean
+    fetchingconcurrent: boolean
+    fetchingAggregatedStatsByCountries: boolean
   }
   errors: {
     fetchingBandwidth: string
+    fetchingconcurrent: string
+    fetchingAggregatedStatsByCountries: string
+
   }
 }
 interface ChartrStateInter {

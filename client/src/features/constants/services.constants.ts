@@ -6,6 +6,8 @@ const URL = {
   },
   charts: {
     fetchBandWith: `/bandwidth`,
+    fetchConcurrent: `/audience`,
+    fetchAggregatedStatsByCountries :'/countries'
   },
 }
 
