@@ -1,14 +1,17 @@
 import React from 'react'
-import { PageHeader, Menu, Dropdown, Button, Tag } from 'antd'
+import { PageHeader, Button, Tag } from 'antd'
 import { useSelector, useDispatch as _useDispatch } from 'react-redux'
 import { selectisUserInfo } from '../../features/selectors/user.selectors'
 import { selectRange } from '../../features/selectors/charts.selectors'
 import initials from 'initials'
 import ColorHash from 'color-hash'
+import { LogoutOutlined
+} from '@ant-design/icons';
 import { DatePicker } from 'antd'
 import { changeRange } from '../../features/actions/charts.actions'
-
+import { logout } from '../../features/actions/user.actions'
 import moment from 'moment'
+
 const { RangePicker } = DatePicker
 
 type userInfoType =
@@ -21,17 +24,7 @@ type userInfoType =
     }
   | any
 
-const menu: JSX.Element = (
-  <Menu>
-    <Menu.Item>Logout</Menu.Item>
-  </Menu>
-)
-
-const DropdownMenu = (): JSX.Element => (
-  <Dropdown key="more" overlay={menu}>
-    <Button>Menu</Button>
-  </Dropdown>
-)
+ 
 
 const dateString = (v: number): any => moment.unix(v)
 
@@ -44,6 +37,8 @@ export default function Header(): JSX.Element {
 
   const range: { fromTimestamp: number; toTimestamp: number } | any =
     useSelector(selectRange)
+
+      
   return (
     <header>
       <PageHeader
@@ -69,7 +64,12 @@ export default function Header(): JSX.Element {
               )
             }}
           />,
-          <DropdownMenu key="more" />,
+          <Button key="logout"
+          danger
+          onClick={()=> dispatch(logout())}
+          >Logout
+          <LogoutOutlined />
+          </Button>
         ]}
         avatar={{
           size: 50,

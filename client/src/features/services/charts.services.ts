@@ -1,3 +1,7 @@
+/**
+ * charts services
+ */
+
 /* eslint-disable no-throw-literal */
 import axios from 'axios'
 import { requestHeaderWithoutToken } from '../../utils/requestHeader'

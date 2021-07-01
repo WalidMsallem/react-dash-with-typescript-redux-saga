@@ -3,6 +3,7 @@ const URL = {
   user: {
     auth: '/auth',
     me: '/myinfo',
+    logout:'/logout'
   },
   charts: {
     fetchBandWith: `/bandwidth`,

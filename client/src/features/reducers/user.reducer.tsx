@@ -1,3 +1,7 @@
+/**
+ * user reducer
+ */
+
 import ActionTypes from '../constants/user.constants'
 import { UserState, UserActions } from '../types/user.types'
 import produce from 'immer'
@@ -12,10 +16,12 @@ export const initialState: UserState = {
     loading: {
       loginUser: false,
       getProfile: false,
+      logoutUser: false,
     },
     errors: {
       loginUser: '',
       getProfile: '',
+      logoutUser: '',
     },
   },
 }
@@ -34,7 +40,6 @@ const userReducer = (
         draft.local.loading.loginUser = false
         draft.local.errors.loginUser = ''
         localStorage.setItem('token', action.data.session_token)
-        console.log('hello word sucss', action)
         break
       case ActionTypes.LOGIN.failure:
         draft.local.loading.loginUser = false
@@ -66,6 +71,27 @@ const userReducer = (
         }
         localStorage.removeItem('token')
         break
+
+        case ActionTypes.LOGOUT.request:
+          draft.local.loading.logoutUser = true
+          draft.local.errors.logoutUser = ''
+          break
+        case ActionTypes.LOGOUT.success:
+          draft.local.loading.logoutUser = false
+          draft.local.isAuthenticated = false
+          localStorage.removeItem('token')
+          break
+        case ActionTypes.LOGOUT.failure:
+          draft.local.loading.logoutUser = false
+          draft.local.isAuthenticated = false
+          try {
+            draft.local.errors.logoutUser = action.errors.response.data
+          } catch (e) {
+            draft.local.errors.logoutUser = 'Server error'
+          }
+          localStorage.removeItem('token')
+          break
+
     }
   })
 

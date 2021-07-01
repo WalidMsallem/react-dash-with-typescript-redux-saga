@@ -73,7 +73,7 @@ function* fetchOrDeleteTemplate(
       data: result,
     })
   } catch (e) {
-    console.log('e', e)
+    // console.log('e', e)
     yield put({ type: actionTypes.failure, e })
   }
 }
@@ -90,7 +90,7 @@ function* postTemplate(
       data: result,
     })
   } catch (e) {
-    console.log('e', e)
+    // console.log('e', e)
     yield put({ type: actionTypes.failure, e })
   }
 }
@@ -107,22 +107,10 @@ function* putTemplate(
       data: result,
     })
   } catch (e) {
-    console.log('e', e)
+    // console.log('e', e)
     yield put({ type: actionTypes.failure, e })
   }
 }
-
-// function* withoutApiTemplate(actionTypes: ActionTypes, action: ActionWithBody) {
-//   try {
-//     yield put({
-//       type: actionTypes.success,
-//       data: action.body,
-//     })
-//   } catch (e) {
-//     console.log('e', e)
-//     yield put({ type: actionTypes.failure, e })
-//   }
-// }
 
 export const generateSaga = (
   sagaType: string,
@@ -137,8 +125,6 @@ export const generateSaga = (
       return postTemplate.bind(null, actionTypes, api)
     case sagaTypes.PUT:
       return putTemplate.bind(null, actionTypes, api)
-    // case sagaTypes.WITHOUT_API:
-    //   return withoutApiTemplate.bind(null, actionTypes)
     default:
       return 'Failed'
   }

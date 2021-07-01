@@ -11,10 +11,12 @@ interface Local {
   loading: {
     loginUser: boolean
     getProfile: boolean
+    logoutUser: boolean
   }
   errors: {
     loginUser: string
     getProfile: string
+    logoutUser: string
   }
 }
 interface UserStateInter {

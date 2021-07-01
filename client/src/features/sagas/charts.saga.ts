@@ -1,6 +1,10 @@
+
+/**
+ * Charts Sagas 
+ */
+
 import { takeEvery, put, call } from 'redux-saga/effects'
-import { ChartsActions } from '../types/charts.types'
-// import { generateSaga, sagaTypes } from '../../utils/generic-saga'
+import { ChartsActions } from '../types/charts.types' 
 import * as chartsApi from '../services/charts.services'
 import ActionTypes, { AGGREHATE_TYPE } from '../constants/charts.constants'
 import { fetchBandWidth as fetchBandWidthAction  ,fetchConcurrent as fetchConcurrentAction  } from '../actions/charts.actions'

@@ -1,3 +1,8 @@
+/**
+ * User selectors
+ */
+
+
 import { createSelector } from 'reselect'
 
 export const selectisAuthenticated = createSelector(

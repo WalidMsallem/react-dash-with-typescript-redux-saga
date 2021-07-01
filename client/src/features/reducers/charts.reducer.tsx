@@ -1,3 +1,8 @@
+/**
+ * Charts reducer
+ */
+
+
 import ActionTypes from '../constants/charts.constants'
 import { ChartrState, ChartsActions } from '../types/charts.types'
 import produce from 'immer'
@@ -23,7 +28,6 @@ const userReducer = (
   action: ChartsActions | any,
 ): ChartrState =>
   produce(state, (draft) => {
-    // console.log('==> action:',action)
     switch (action.type) {
       case ActionTypes.CHANGE_RANGE:
         draft.local.fromTimestamp = action.payload.fromTimestamp
