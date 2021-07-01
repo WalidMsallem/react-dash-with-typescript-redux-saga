@@ -54,7 +54,6 @@ console.log('[INIT] Loaded data...');
 
 // Shift all audience timestamps to end on Date.now() instead
 const nowTimestamp =  moment().unix();
-console.log('now nowTimestamp' ,nowTimestamp)
 for (const data of audienceData.values()) {
   // Calculate time offset
   const lastEntry = data.audience.slice(-1)[0];
@@ -487,7 +486,7 @@ app.post('/bandwidth', (request, response) => {
       response.send(slicedData);
     } else {
       if (slicedData.cdn.length === 0 || slicedData.p2p.length === 0) {
-        response.status(404).send("No data available in requested time range");
+        response.status(200).send({cdn:0, p2p:0, msg:'No data available in requested time range'});
         console.log('POST, /bandwidth 404');
         return;
       }

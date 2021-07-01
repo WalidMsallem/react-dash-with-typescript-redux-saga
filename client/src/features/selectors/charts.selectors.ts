@@ -1,3 +1,7 @@
+/**
+ * Charts selectors
+ */
+
 import { createSelector } from 'reselect'
 
 export const selectRange = createSelector(

@@ -6,6 +6,11 @@ $red: #9A193E;
   background-color: white;
   border-radius: 5px;
 
+  @media (max-width: 480px) {
+    width: 88%;
+  
+ 
+  }
   button{
     width: 100%;
     margin-bottom: 0;
@@ -13,4 +18,6 @@ $red: #9A193E;
   .errors-section {
     color: $red
   }
+
+
 }
