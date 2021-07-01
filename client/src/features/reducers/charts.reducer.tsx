@@ -2,7 +2,6 @@
  * Charts reducer
  */
 
-
 import ActionTypes from '../constants/charts.constants'
 import { ChartrState, ChartsActions } from '../types/charts.types'
 import produce from 'immer'
@@ -11,15 +10,23 @@ import produce from 'immer'
 export const initialState: ChartrState = {
   data: {
     bandwidth: { p2p: [], cdn: [] },
-    concurrent: { audience: []  },
+    concurrent: { audience: [] },
     bandwidthMax: { cdn: null, p2p: null },
-    aggregatedStatsByCountries : []
+    aggregatedStatsByCountries: [],
   },
   local: {
     fromTimestamp: 1503528751,
     toTimestamp: 1535064751,
-    loading: { fetchingBandwidth: false,fetchingconcurrent:false,fetchingAggregatedStatsByCountries:false },
-    errors: { fetchingBandwidth: '',fetchingconcurrent:'',fetchingAggregatedStatsByCountries:'' },
+    loading: {
+      fetchingBandwidth: false,
+      fetchingconcurrent: false,
+      fetchingAggregatedStatsByCountries: false,
+    },
+    errors: {
+      fetchingBandwidth: '',
+      fetchingconcurrent: '',
+      fetchingAggregatedStatsByCountries: '',
+    },
   },
 }
 
@@ -54,44 +61,43 @@ const userReducer = (
         }
         break
 
-        case ActionTypes.FETCH_CONCURRENT.request:
-          draft.local.loading.fetchingconcurrent = true
-          draft.local.errors.fetchingconcurrent = ''
-          break
-        case ActionTypes.FETCH_CONCURRENT.success:
-          draft.local.loading.fetchingconcurrent = false
-          draft.local.errors.fetchingconcurrent = ''
-          draft.data.concurrent = action.data.concurrent
-          break
-        case ActionTypes.FETCH_CONCURRENT.failure:
-          draft.local.loading.fetchingconcurrent = false
-          try {
-            draft.local.errors.fetchingconcurrent = action.errors.response.data
-          } catch (e) {
-            draft.local.errors.fetchingconcurrent = 'Server error'
-          }
-          break
+      case ActionTypes.FETCH_CONCURRENT.request:
+        draft.local.loading.fetchingconcurrent = true
+        draft.local.errors.fetchingconcurrent = ''
+        break
+      case ActionTypes.FETCH_CONCURRENT.success:
+        draft.local.loading.fetchingconcurrent = false
+        draft.local.errors.fetchingconcurrent = ''
+        draft.data.concurrent = action.data.concurrent
+        break
+      case ActionTypes.FETCH_CONCURRENT.failure:
+        draft.local.loading.fetchingconcurrent = false
+        try {
+          draft.local.errors.fetchingconcurrent = action.errors.response.data
+        } catch (e) {
+          draft.local.errors.fetchingconcurrent = 'Server error'
+        }
+        break
 
-          case ActionTypes.FETCH_AGGREGATE_STATE_BY_COUNTRIES.request:
-            draft.local.loading.fetchingAggregatedStatsByCountries = true
-            draft.local.errors.fetchingAggregatedStatsByCountries = ''
-            break
-          case ActionTypes.FETCH_AGGREGATE_STATE_BY_COUNTRIES.success:
-            draft.local.loading.fetchingAggregatedStatsByCountries = false
-            draft.local.errors.fetchingAggregatedStatsByCountries = ''
-            draft.data.aggregatedStatsByCountries = action.data.aggregatedStatsByCountries
-            break
-          case ActionTypes.FETCH_AGGREGATE_STATE_BY_COUNTRIES.failure:
-            draft.local.loading.fetchingAggregatedStatsByCountries = false
-            try {
-              draft.local.errors.fetchingAggregatedStatsByCountries = action.errors.response.data
-            } catch (e) {
-              draft.local.errors.fetchingAggregatedStatsByCountries = 'Server error'
-            }
-            break
-
-           
-
+      case ActionTypes.FETCH_AGGREGATE_STATE_BY_COUNTRIES.request:
+        draft.local.loading.fetchingAggregatedStatsByCountries = true
+        draft.local.errors.fetchingAggregatedStatsByCountries = ''
+        break
+      case ActionTypes.FETCH_AGGREGATE_STATE_BY_COUNTRIES.success:
+        draft.local.loading.fetchingAggregatedStatsByCountries = false
+        draft.local.errors.fetchingAggregatedStatsByCountries = ''
+        draft.data.aggregatedStatsByCountries =
+          action.data.aggregatedStatsByCountries
+        break
+      case ActionTypes.FETCH_AGGREGATE_STATE_BY_COUNTRIES.failure:
+        draft.local.loading.fetchingAggregatedStatsByCountries = false
+        try {
+          draft.local.errors.fetchingAggregatedStatsByCountries =
+            action.errors.response.data
+        } catch (e) {
+          draft.local.errors.fetchingAggregatedStatsByCountries = 'Server error'
+        }
+        break
     }
   })
 

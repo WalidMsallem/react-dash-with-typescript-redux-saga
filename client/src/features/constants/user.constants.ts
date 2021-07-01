@@ -16,6 +16,6 @@ const GET_PROFILE = generateActionTypes(root, 'GET_PROFILE')
 const constants = {
   LOGIN,
   GET_PROFILE,
-  LOGOUT
+  LOGOUT,
 }
 export default constants

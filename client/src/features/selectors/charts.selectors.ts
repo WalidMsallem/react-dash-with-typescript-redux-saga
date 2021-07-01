@@ -23,10 +23,13 @@ export const selectBandwidthData = createSelector(
 export const selectConcurrentData = createSelector(
   (state: any): object => state.charts,
   (charts: any): object => ({
-    concurrent: charts.data.concurrent, 
+    concurrent: charts.data.concurrent,
   }),
 )
 export const selectAggregatedStatsByCountriesData = createSelector(
   (state: any): object => state.charts,
-  (charts: any): object => charts.data.aggregatedStatsByCountries.filter((el:any,index:number)=> index < 10),
+  (charts: any): object =>
+    charts.data.aggregatedStatsByCountries.filter(
+      (el: any, index: number) => index < 10,
+    ),
 )

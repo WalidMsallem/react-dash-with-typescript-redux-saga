@@ -3,7 +3,7 @@
 - All changes to backend data will be reset when the server is killed.
 
 - Before starting the server : `npm install`
-- To start the server: `node ./mock-backend.js`, by default the server will be listening to the port 3000.
+- To start the server: `node ./mock-backend.js`, by default the server will be listening to the port 5000.
 
 - You can optionally simulate random request failures by changing `REQUEST_SUCCESS_RATE` in `mock-backend.js`.
 

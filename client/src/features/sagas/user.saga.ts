@@ -1,10 +1,9 @@
-
 /**
- * User Sagas 
+ * User Sagas
  */
 
 import { takeEvery, put, call } from 'redux-saga/effects'
-import { UserActions } from '../types/user.types' 
+import { UserActions } from '../types/user.types'
 import * as userApi from '../services/user.services'
 import ActionTypes from '../constants/user.constants'
 import { push } from 'connected-react-router'
@@ -46,7 +45,6 @@ export function* loginUserWatcher() {
   yield takeEvery(ActionTypes.LOGIN.request, loginUser)
 }
 
-
 export function* logoutUser(action: UserActions | any) {
   try {
     const result = yield call(userApi.logoutUser, action.payload)
@@ -64,4 +62,3 @@ export function* logoutUser(action: UserActions | any) {
 export function* logoutUserWatcher() {
   yield takeEvery(ActionTypes.LOGOUT.request, logoutUser)
 }
-
