@@ -3,9 +3,10 @@ import { ChartsActions } from '../types/charts.types'
 // import { generateSaga, sagaTypes } from '../../utils/generic-saga'
 import * as chartsApi from '../services/charts.services'
 import ActionTypes, { AGGREHATE_TYPE } from '../constants/charts.constants'
-import { fetchBandWidth } from '../actions/charts.actions'
+import { fetchBandWidth as fetchBandWidthAction  ,fetchConcurrent as fetchConcurrentAction  } from '../actions/charts.actions'
 export function* changeRange(action: ChartsActions | any) {
-  yield put(fetchBandWidth(action.payload))
+  yield put(fetchBandWidthAction(action.payload))
+  yield put(fetchConcurrentAction(action.payload))
 }
 
 export function* changeRangeWatcher() {
@@ -30,9 +31,6 @@ export function* fetchBandwidth(action: ChartsActions | any) {
         bandwidthMax: bandwidthMaxResponse,
       },
     })
-    yield put({
-      type: ActionTypes.FETCH_BANDWIDTH.request,
-    })
   } catch (e) {
     // console.log('e', e)
     yield put({ type: ActionTypes.FETCH_BANDWIDTH.failure })
@@ -42,3 +40,52 @@ export function* fetchBandwidth(action: ChartsActions | any) {
 export function* fetchBandwidthWatcher() {
   yield takeEvery(ActionTypes.FETCH_BANDWIDTH.request, fetchBandwidth)
 }
+
+
+
+export function* fetchConcurrent(action: ChartsActions | any) {
+  try {
+    const concurrentResponse = yield call(
+      chartsApi.fetchConcurrent,
+      action.payload,
+    )
+    yield put({
+      type: ActionTypes.FETCH_CONCURRENT.success,
+      data: {
+        concurrent: concurrentResponse, 
+      },
+    })
+ 
+  } catch (e) {
+    // console.log('e', e)
+    yield put({ type: ActionTypes.FETCH_CONCURRENT.failure })
+  }
+}
+
+export function* fetchConcurrentWatcher() {
+  yield takeEvery(ActionTypes.FETCH_CONCURRENT.request, fetchConcurrent)
+}
+
+export function* fetchAggregatedStatsByCountries(action: ChartsActions | any) {
+  try {
+    const caggregatedStatsByCountriesResponse = yield call(
+      chartsApi.fetchAggregatedStatsByCountries,
+      action.payload,
+    )
+    yield put({
+      type: ActionTypes.FETCH_AGGREGATE_STATE_BY_COUNTRIES.success,
+      data: {
+        aggregatedStatsByCountries: caggregatedStatsByCountriesResponse, 
+      },
+    })
+ 
+  } catch (e) {
+    // console.log('e', e)
+    yield put({ type: ActionTypes.FETCH_AGGREGATE_STATE_BY_COUNTRIES.failure })
+  }
+}
+
+export function* fetchAggregatedStatsByCountriesWatcher() {
+  yield takeEvery(ActionTypes.FETCH_AGGREGATE_STATE_BY_COUNTRIES.request, fetchAggregatedStatsByCountries)
+}
+

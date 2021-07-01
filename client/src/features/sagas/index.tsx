@@ -1,7 +1,7 @@
 import { all } from 'redux-saga/effects'
 
 import { loginUserWatcher, getProfileWatcher } from './user.saga'
-import { changeRangeWatcher, fetchBandwidthWatcher } from './charts.saga'
+import { changeRangeWatcher, fetchBandwidthWatcher,fetchConcurrentWatcher ,fetchAggregatedStatsByCountriesWatcher} from './charts.saga'
 
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
@@ -10,5 +10,7 @@ export default function* rootSaga() {
     getProfileWatcher(),
     changeRangeWatcher(),
     fetchBandwidthWatcher(),
+    fetchConcurrentWatcher(),
+    fetchAggregatedStatsByCountriesWatcher()
   ])
 }

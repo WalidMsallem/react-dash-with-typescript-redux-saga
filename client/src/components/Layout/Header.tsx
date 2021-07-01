@@ -2,7 +2,7 @@ import React from 'react'
 import { PageHeader, Menu, Dropdown, Button, Tag } from 'antd'
 import { useSelector, useDispatch as _useDispatch } from 'react-redux'
 import { selectisUserInfo } from '../../features/selectors/user.selectors'
-import { selectisRange } from '../../features/selectors/charts.selectors'
+import { selectRange } from '../../features/selectors/charts.selectors'
 import initials from 'initials'
 import ColorHash from 'color-hash'
 import { DatePicker } from 'antd'
@@ -43,7 +43,7 @@ export default function Header(): JSX.Element {
   const dispatch = _useDispatch()
 
   const range: { fromTimestamp: number; toTimestamp: number } | any =
-    useSelector(selectisRange)
+    useSelector(selectRange)
   return (
     <header>
       <PageHeader

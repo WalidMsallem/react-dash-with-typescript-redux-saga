@@ -4,6 +4,8 @@ const root = 'app/Charts/'
 
 const CHANGE_RANGE = `${root}CHANGE_RANGE`
 const FETCH_BANDWIDTH = generateActionTypes(root, 'FETCH_BANDWIDTH')
+const FETCH_CONCURRENT = generateActionTypes(root, 'FETCH_CONCURRENT')
+const FETCH_AGGREGATE_STATE_BY_COUNTRIES = generateActionTypes(root, 'FETCH_AGGREGATE_STATE_BY_COUNTRIES')
 
 export const AGGREHATE_TYPE = {
   SUM: 'sum',
@@ -14,5 +16,7 @@ export const AGGREHATE_TYPE = {
 const constants = {
   CHANGE_RANGE,
   FETCH_BANDWIDTH,
+  FETCH_CONCURRENT,
+  FETCH_AGGREGATE_STATE_BY_COUNTRIES
 }
 export default constants

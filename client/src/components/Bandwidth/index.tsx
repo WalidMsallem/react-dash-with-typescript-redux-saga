@@ -1,91 +1,77 @@
-import React, { useEffect } from 'react'
-import { CanvasJSChart } from 'canvasjs-react-charts'
 import moment from 'moment'
 import { useDispatch as _useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { Line } from 'react-chartjs-2';
+import { Divider } from 'antd';
 import {
-  selectisBandwidthData,
-  selectisRange,
+  selectBandwidthData,
+  selectRange,
 } from '../../features/selectors/charts.selectors'
 import { fetchBandWidth } from '../../features/actions/charts.actions'
 
 const dateString = (v: number): any => moment.unix(v).format('MMM DD')
 const formatTogGbps = (n: number): number => Number((n * 1e-6).toFixed(2))
 
-export default function Bandwidth() {
-  const dispatch = _useDispatch()
+const MultiAxisLine = () => {
+
+    const dispatch = _useDispatch()
 
   const range: { fromTimestamp: number; toTimestamp: number } | any =
-    useSelector(selectisRange)
+    useSelector(selectRange)
 
-  const bandwidthData = useSelector(selectisBandwidthData)
+  const bandwidthData = useSelector(selectBandwidthData)
   const { bandwidth, cdnMax }: any = bandwidthData
 
   useEffect(() => {
     range && dispatch(fetchBandWidth(range))
   }, [])
-  const options = {
-    animationEnabled: true,
-    exportEnabled: true,
-    theme: 'light1',
-    zoomEnabled: true,
-    title: {
-      text: 'Bandwidth usage',
-    },
-    axisX: {
-      valueFormatString: 'DD MMM',
-    },
-    axisY: {
-      scaleBreaks: {
-        autoCalculate: true,
-      },
-      suffix: 'Gbps',
-    },
-    toolTip: {
-      shared: true,
-    },
-    data: [
+
+  const data = {
+    labels: bandwidth.p2p.map((el:any)=> dateString(el[1]) ),
+    datasets: [
       {
-        type: 'area',
-        name: 'P2P',
-        showInLegend: true,
-        dataPoints: bandwidth.p2p.map((el: any) => ({
-          y: formatTogGbps(el[1]),
-          label: dateString(el[1]),
-        })),
+        label: 'Max combined',
+        data: bandwidth.p2p.map((el: any,index: number) =>formatTogGbps(el[1] + bandwidth.p2p[index][1])),
+        fill: false,
+        backgroundColor: '#1D874D',
+        borderColor: '#1D874D',
       },
       {
-        type: 'area',
-        name: 'CDN',
-        showInLegend: true,
-        dataPoints: bandwidth.cdn.map((el: any) => ({
-          y: formatTogGbps(el[1]),
-          label: dateString(el[1]),
-        })),
+        label: 'CDN Max',
+        data: bandwidth.p2p.map((el: any,index: number) =>formatTogGbps(cdnMax)),
+        fill: false,
+        backgroundColor: '#FFBF10',
+        borderColor: '#FFBF10',
       },
       {
-        type: 'spline',
-        name: 'Max combined',
-        showInLegend: true,
-        dataPoints: bandwidth.cdn.map((el: any, index: number) => ({
-          y: formatTogGbps(el[1] + bandwidth.p2p[index][1]),
-          label: dateString(el[1]),
-        })),
+        label: 'P2P',
+        data: bandwidth.cdn.map((el: any) => formatTogGbps ( el[1])),
+        fill: true,
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgba(255, 99, 132, 0.2)',
       },
       {
-        name: 'CDN Max',
-        showInLegend: true,
-        type: 'spline',
-        dataPoints: bandwidth.cdn.map((el: any, index: number) => ({
-          label: dateString(el[1]),
-          y: formatTogGbps(cdnMax),
-        })),
+        label: 'CDN',
+        data: bandwidth.p2p.map((el: any) =>formatTogGbps (el[1])),
+        fill: true,
+        backgroundColor: 'rgb(54, 162, 235)',
+        borderColor: 'rgba(54, 162, 235, 0.2)',
       },
+  
     ],
-  }
+  };
+  
 
   return (
-    <div>
-      <CanvasJSChart options={options} />
-    </div>
-  )
-}
+      <div  className='chart-container'>
+        <Divider orientation="left" plain>
+        <h2 className='chart-title'> Bandwidth usage </h2>
+    </Divider>
+      <Line  
+       data={data} options={{}} 
+       />
+      </div>
+  );
+} 
+
+export default MultiAxisLine;
