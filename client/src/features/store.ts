@@ -4,11 +4,9 @@ import { createInjectorsEnhancer } from 'redux-injectors'
 import { routerMiddleware } from 'connected-react-router'
 
 import history from '../utils/history'
- 
 
 import createReducer from './reducers/rootReducer'
 import rootSaga from './sagas'
-
 
 export default function configureAppStore(initialState = {}) {
   const reduxSagaMonitorOptions = {}
@@ -36,4 +34,3 @@ export default function configureAppStore(initialState = {}) {
   sagaMiddleware.run(rootSaga)
   return store
 }
- 

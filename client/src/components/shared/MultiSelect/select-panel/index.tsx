@@ -3,77 +3,77 @@
  * user selects the component.  It encapsulates, the
  * Select-all item, and the list of options.
  */
-import React, { 
-  useMemo,
-  useRef, 
-} from "react";
+import React, { useMemo, useRef } from 'react'
 
-import { useMultiSelect } from "../use-multi-select";
+import { useMultiSelect } from '../use-multi-select'
 
-import SelectItem from "./select-item";
-import SelectList from "./select-list";
-
+import SelectItem from './select-item'
+import SelectList from './select-list'
 
 const SelectPanel = () => {
   const {
     renderMessage,
     onChange,
     options,
-    value, 
+    value,
     selectAllLabel,
     ItemRenderer,
     disabled,
     hasSelectAll,
-  } = useMultiSelect();
+  } = useMultiSelect()
 
-  const listRef = useRef<any>();
+  const listRef = useRef<any>()
   const selectAllOption = {
-    label: selectAllLabel || renderMessage("selectAll"),
-    value: "",
-  };
+    label: selectAllLabel || renderMessage('selectAll'),
+    value: '',
+  }
 
-  const selectAllValues = (checked:boolean) => {
+  const selectAllValues = (checked: boolean) => {
     const filteredValues = options
-      .filter((o:{disabled:boolean}|any) => !o.disabled)
-      .map((o:{value:string}|any) => o.value);
+      .filter((o: { disabled: boolean } | any) => !o.disabled)
+      .map((o: { value: string } | any) => o.value)
 
     if (checked) {
-      const selectedValues = value.map((o:{value:string}|any) => o.value);
-      const finalSelectedValues = [...selectedValues, ...filteredValues];
+      const selectedValues = value.map((o: { value: string } | any) => o.value)
+      const finalSelectedValues = [...selectedValues, ...filteredValues]
 
-      return options.filter((o:{value:string}|any) =>
-        finalSelectedValues.includes(o.value)
-      );
+      return options.filter((o: { value: string } | any) =>
+        finalSelectedValues.includes(o.value),
+      )
     }
 
-    return value.filter((o:{value:string}|any) => !filteredValues.includes(o.value));
-  };
+    return value.filter(
+      (o: { value: string } | any) => !filteredValues.includes(o.value),
+    )
+  }
 
   const selectAllChanged = (checked: boolean) => {
-    const newOptions = selectAllValues(checked);
-    onChange(newOptions);
-  };
-
+    const newOptions = selectAllValues(checked)
+    onChange(newOptions)
+  }
 
   const [isAllOptionSelected, hasSelectableOptions] = useMemo(() => {
-    const filteredOptionsList = options.filter((o:{disabled:number}|any) => !o.disabled);
+    const filteredOptionsList = options.filter(
+      (o: { disabled: number } | any) => !o.disabled,
+    )
     return [
       filteredOptionsList.every(
-        (o:{value:string}|any) => value.findIndex((v:{value:number}|any) => v.value === o.value) !== -1
+        (o: { value: string } | any) =>
+          value.findIndex(
+            (v: { value: number } | any) => v.value === o.value,
+          ) !== -1,
       ),
       filteredOptionsList.length !== 0,
-    ];
+    ]
     // eslint-disable-next-line
-  }, [options, value]);
+  }, [options, value])
 
   return (
     <div className="select-panel" role="listbox" ref={listRef}>
- 
-
       <ul className="options">
         {hasSelectAll && hasSelectableOptions && (
           <SelectItem
-            tabIndex= {-1}
+            tabIndex={-1}
             checked={isAllOptionSelected}
             option={selectAllOption}
             onSelectionChanged={selectAllChanged}
@@ -83,15 +83,13 @@ const SelectPanel = () => {
         )}
 
         {options.length ? (
-          <SelectList 
-            options={options} 
-          />
+          <SelectList options={options} />
         ) : (
-          <li className="no-options">{renderMessage("noOptions")}</li>
+          <li className="no-options">{renderMessage('noOptions')}</li>
         )}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default SelectPanel;
+export default SelectPanel

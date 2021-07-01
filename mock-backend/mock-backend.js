@@ -2,14 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require("cors");
 
+var moment = require('moment-timezone');
+
+
 const app = express();
 
 // Settings
 const SERVER_PORT = 5000; // Listening port
 const REQUEST_SUCCESS_RATE = 1; // Optional challenge: set this to have requests to backend randomly failing
-
-
-
+ 
 app.use(
   cors({
     origin: "http://localhost:3000", // restrict calls to those this address
@@ -52,7 +53,8 @@ console.log('[INIT] Loaded data...');
 // Process data
 
 // Shift all audience timestamps to end on Date.now() instead
-const nowTimestamp = Date.now();
+const nowTimestamp =  moment().unix();
+console.log('now nowTimestamp' ,nowTimestamp)
 for (const data of audienceData.values()) {
   // Calculate time offset
   const lastEntry = data.audience.slice(-1)[0];

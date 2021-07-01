@@ -6,16 +6,16 @@
  * and hosts it in the component.  When the component is selected, it
  * drops-down the contentComponent and applies the contentProps.
  */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react'
 
-import { useDidUpdateEffect } from "../../../../utils/use-did-update-effect";
-import { useKey } from "../../../../utils/use-key";
-import { useMultiSelect } from "../use-multi-select";
-import { KEY } from "../constants";
-import SelectPanel from "../select-panel";
-import { Cross } from "../svg/cross";
-import { Arrow } from "../svg/arrow";
-import { DropdownHeader } from "./header";
+import { useDidUpdateEffect } from '../../../../utils/use-did-update-effect'
+import { useKey } from '../../../../utils/use-key'
+import { useMultiSelect } from '../use-multi-select'
+import { KEY } from '../constants'
+import SelectPanel from '../select-panel'
+import { Cross } from '../svg/cross'
+import { Arrow } from '../svg/arrow'
+import { DropdownHeader } from './header'
 
 const Dropdown = () => {
   const {
@@ -30,76 +30,76 @@ const Dropdown = () => {
     isOpen,
     defaultIsOpen,
     ClearSelectedIcon,
-  } = useMultiSelect();
+  } = useMultiSelect()
 
-  const [isInternalExpand, setIsInternalExpand] = useState(true);
-  const [expanded, setExpanded] = useState(defaultIsOpen);
-  const [hasFocus, setHasFocus] = useState(false);
-  const FinalArrow = ArrowRenderer || Arrow;
+  const [isInternalExpand, setIsInternalExpand] = useState(true)
+  const [expanded, setExpanded] = useState(defaultIsOpen)
+  const [hasFocus, setHasFocus] = useState(false)
+  const FinalArrow = ArrowRenderer || Arrow
 
-  const wrapper: any = useRef();
+  const wrapper: any = useRef()
 
   useDidUpdateEffect(() => {
-    onMenuToggle && onMenuToggle(expanded);
-  }, [expanded]);
+    onMenuToggle && onMenuToggle(expanded)
+  }, [expanded])
 
   useEffect(() => {
-    if (defaultIsOpen === undefined && typeof isOpen === "boolean") {
-      setIsInternalExpand(false);
-      setExpanded(isOpen);
+    if (defaultIsOpen === undefined && typeof isOpen === 'boolean') {
+      setIsInternalExpand(false)
+      setExpanded(isOpen)
     }
-  }, [isOpen]);
+  }, [isOpen])
 
-  const handleKeyDown = (e :object|any) => {
+  const handleKeyDown = (e: object | any) => {
     // allows space and enter when focused on input/button
     if (
-      ["text", "button"].includes(e.target.type) &&
+      ['text', 'button'].includes(e.target.type) &&
       [KEY.SPACE, KEY.ENTER].includes(e.code)
     ) {
-      return;
+      return
     }
 
     if (isInternalExpand) {
       if (e.code === KEY.ESCAPE) {
-        setExpanded(false);
-        wrapper?.current?.focus();
+        setExpanded(false)
+        wrapper?.current?.focus()
       } else {
-        setExpanded(true);
+        setExpanded(true)
       }
     }
-    e.preventDefault();
-  };
+    e.preventDefault()
+  }
 
   useKey([KEY.ENTER, KEY.ARROW_DOWN, KEY.SPACE, KEY.ESCAPE], handleKeyDown, {
     target: wrapper,
-  });
+  })
 
   const handleHover = (iexpanded: boolean) => {
-    isInternalExpand && shouldToggleOnHover && setExpanded(iexpanded);
-  };
+    isInternalExpand && shouldToggleOnHover && setExpanded(iexpanded)
+  }
 
-  const handleFocus = () => !hasFocus && setHasFocus(true);
+  const handleFocus = () => !hasFocus && setHasFocus(true)
 
-  const handleBlur = (e:object|any) => {
+  const handleBlur = (e: object | any) => {
     if (!e.currentTarget.contains(e.relatedTarget) && isInternalExpand) {
-      setHasFocus(false);
-      setExpanded(false);
+      setHasFocus(false)
+      setExpanded(false)
     }
-  };
+  }
 
-  const handleMouseEnter = () => handleHover(true);
+  const handleMouseEnter = () => handleHover(true)
 
-  const handleMouseLeave = () => handleHover(false);
+  const handleMouseLeave = () => handleHover(false)
 
   const toggleExpanded = () => {
-    isInternalExpand && setExpanded( disabled ? false : !expanded);
-  };
+    isInternalExpand && setExpanded(disabled ? false : !expanded)
+  }
 
-  const handleClearSelected = (e:object|any) => {
-    e.stopPropagation();
-    onChange([]);
-    isInternalExpand && setExpanded(false);
-  };
+  const handleClearSelected = (e: object | any) => {
+    e.stopPropagation()
+    onChange([])
+    isInternalExpand && setExpanded(false)
+  }
 
   return (
     <div
@@ -125,7 +125,7 @@ const Dropdown = () => {
             className="clear-selected-button"
             onClick={handleClearSelected}
             disabled={disabled}
-            aria-label={renderMessage("clearSelected")}
+            aria-label={renderMessage('clearSelected')}
           >
             {ClearSelectedIcon || <Cross />}
           </button>
@@ -140,7 +140,7 @@ const Dropdown = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Dropdown;
+export default Dropdown

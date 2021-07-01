@@ -1,7 +1,5 @@
 import axios from 'axios'
-import {
-  requestHeaderWithoutToken,
-} from '../../utils/requestHeader'
+import { requestHeaderWithoutToken } from '../../utils/requestHeader'
 import URL from '../constants/services.constants'
 
 export const loginUser = async (body: object): Promise<any> => {
