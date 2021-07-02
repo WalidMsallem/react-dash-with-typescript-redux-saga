@@ -1,32 +1,29 @@
 ## Quick start
 
 1.  Make sure that you have Node.js v8.15.1 and npm v5 or above installed.
+ 
 2.  Clone this repo using `git clone git@github.com:WalidMsallem/react-dash-with-typescript-redux-saga.git`
-3.  Move to the appropriate directory: `cd react-dash-with-typescript-redux-saga`.
- 
-4.  Run `npm run setup` in order to install all dependencies. 
-````
-$ npm run setup
-````
-5.  Run `npm run project`.
-````
-$ npm run project
-````
- **or**
- 
-4. Run `npm run install-client`  to install frontend dependencies.
-   Run `npm run install-backend`  to install backend dependencies.
-````
-$ npm run install-client
-$ npm run install-backend
-````
-5. And now run `npm run client` and in the same time run `npm run server` in different command line
-````
-$ npm run client
-$ npm run server
-````
- 
 
+````
+$ git clone git@github.com:WalidMsallem/react-dash-with-typescript-redux-saga.gi
+````
+
+3.  Move to the appropriate directory: `cd react-dash-with-typescript-redux-saga`.
+
+4. Install frontend dependencies and the project.
+````
+$ cd client 
+$ npm install
+$ npm start
+````
+
+5.  4. Install backend dependencies and the project.
+````
+$ cd mock-backend  
+$ npm install
+$ npm start
+````
+ 
  _At this point the frontend will run under `http://localhost:3000` and the backend/api will run under `http://localhost:5000`._
  
 Now you're ready to rumble!
