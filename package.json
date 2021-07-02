@@ -12,7 +12,7 @@
     "install-client": "npm install --prefix client",
     "install-backend": "npm install  --prefix mock-backend",
     "install-root-project": "npm install -D",
-    "setup": "npm install && npm install  --prefix mock-backend  && npm install --prefix client",
+    "setup": "npm install & npm install  --prefix mock-backend  & npm install --prefix client",
     "server": "nodemon mock-backend",
     "client": "npm start --prefix client",
     "project": "concurrently \"npm run server\" \"npm run client\""
