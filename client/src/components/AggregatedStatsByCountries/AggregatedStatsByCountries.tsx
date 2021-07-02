@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { useDispatch as _useDispatch, useSelector } from 'react-redux'
 import { Bar } from 'react-chartjs-2'

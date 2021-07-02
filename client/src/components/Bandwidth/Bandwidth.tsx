@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import moment from 'moment'
 import { useDispatch as _useDispatch, useSelector } from 'react-redux'
 import React, { useEffect } from 'react'

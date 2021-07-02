@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react'
 import Login from './components/Login'
 import Layout from './components/Layout'
 import LandingPage from './components/LandingPage'
