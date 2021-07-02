@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /*
  * copied from https://github.com/imbhargav5/rooks/blob/master/packages/shared/useKeyRef.ts
  */
@@ -46,7 +47,7 @@ function useKey(
   const options = Object.assign({}, defaultOptions, opts)
   const { when, eventTypes } = options
   const callbackRef = useRef<(e: KeyboardEvent) => any>(callback)
-  let { target } = options
+  let { target }:any = options
 
   useEffect(() => {
     callbackRef.current = callback

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import moment from 'moment'
 import { Line } from 'react-chartjs-2'
