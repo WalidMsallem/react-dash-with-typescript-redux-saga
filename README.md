@@ -10,14 +10,14 @@ $ git clone git@github.com:WalidMsallem/react-dash-with-typescript-redux-saga.gi
 
 3.  Move to the appropriate directory: `cd react-dash-with-typescript-redux-saga`.
 
-4. Install frontend dependencies and the project.
+4. Install frontend dependencies and run the project.
 ````
 $ cd client 
 $ npm install
 $ npm start
 ````
 
-5.  4. Install backend dependencies and the project.
+5.  4. Install backend dependencies and run the project.
 ````
 $ cd mock-backend  
 $ npm install
