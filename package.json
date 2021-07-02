@@ -13,9 +13,10 @@
     "install-backend": "npm install  --prefix mock-backend",
     "install-root-project": "npm install -D",
     "setup": "npm install & npm install  --prefix mock-backend  & npm install --prefix client",
-    "server": "nodemon mock-backend",
+    "server": "node mock-backend",
+    "server:nodemon": "nodemon mock-backend",
     "client": "npm start --prefix client",
-    "project": "concurrently \"npm run server\" \"npm run client\""
+    "project": "concurrently \"npm run server:nodemon\" \"npm run client\""
   },
   "repository": {
     "type": "git",
